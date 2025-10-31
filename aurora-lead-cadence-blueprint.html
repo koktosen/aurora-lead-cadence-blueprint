@@ -32,6 +32,15 @@
                 setTimeout(() => setCopied(null), 2000);
             };
 
+            // Color mapping for SVG circles
+            const colorMap = {
+                'bg-blue-500': '#3b82f6',
+                'bg-blue-600': '#2563eb',
+                'bg-green-500': '#22c55e',
+                'bg-orange-500': '#f97316',
+                'bg-purple-500': '#a855f7'
+            };
+
             const phases = [
                 {
                     letter: 'A',
@@ -355,10 +364,10 @@ info@auroraopx.com`
                                                         const nextY = 400 + 280 * Math.sin(nextAngle);
                                                         const controlX = 400 + (280 - 80) * Math.cos((angle + nextAngle) / 2);
                                                         const controlY = 400 + (280 - 80) * Math.sin((angle + nextAngle) / 2);
-                                                        
+
                                                         return (
                                                             <path
-                                                                d={`Q ${controlX} ${controlY} ${nextX} ${nextY}`}
+                                                                d={`M ${x} ${y} Q ${controlX} ${controlY} ${nextX} ${nextY}`}
                                                                 fill="none"
                                                                 stroke="#3b82f6"
                                                                 strokeWidth="2"
@@ -366,15 +375,17 @@ info@auroraopx.com`
                                                             />
                                                         );
                                                     })()}
-                                                    
+
                                                     {/* Phase circle */}
-                                                    <circle cx={x} cy={y} r="35" fill={`#${phase.color.split('-')[1].substring(0, 3)}`} />
+                                                    <circle cx={x} cy={y} r="35" fill={colorMap[phase.color]} />
                                                     <text
                                                         x={x}
                                                         y={y}
                                                         textAnchor="middle"
                                                         dy="0.3em"
-                                                        className="text-white font-bold text-xl"
+                                                        fill="white"
+                                                        fontWeight="bold"
+                                                        fontSize="20"
                                                     >
                                                         {phase.letter}
                                                     </text>
@@ -384,10 +395,10 @@ info@auroraopx.com`
                                         
                                         {/* Center */}
                                         <circle cx="400" cy="400" r="80" fill="#f3f4f6" stroke="#d1d5db" strokeWidth="2" />
-                                        <text x="400" y="390" textAnchor="middle" className="text-gray-700 font-bold text-sm" fontSize="14">
+                                        <text x="400" y="390" textAnchor="middle" fill="#374151" fontWeight="bold" fontSize="14">
                                             Lead Arrives
                                         </text>
-                                        <text x="400" y="410" textAnchor="middle" className="text-gray-600 text-xs" fontSize="12">
+                                        <text x="400" y="410" textAnchor="middle" fill="#4b5563" fontSize="12">
                                             Start Timer Here
                                         </text>
                                         
